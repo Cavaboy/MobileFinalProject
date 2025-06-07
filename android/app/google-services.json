@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "952434214417",
+    "project_id": "nomaddaily-finalproject",
+    "storage_bucket": "nomaddaily-finalproject.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952434214417:android:a423c9451560b3830953b0",
+        "android_client_info": {
+          "package_name": "com.example.tugas_akhir"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcituwLKKPGQkIP0Z6Gq8iK9sAJgBT3VM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
