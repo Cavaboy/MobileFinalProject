@@ -13,7 +13,7 @@
     <!-- For Android 13+ (API 33+) -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
     <application
-        android:label="tugas_akhir"
+        android:label="Nomad Daily"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

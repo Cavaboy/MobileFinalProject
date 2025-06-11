@@ -33,22 +33,7 @@ class NomadDailyApp extends StatelessWidget {
         home: Consumer<AuthService>(
           builder: (context, auth, _) {
             if (auth.user == null) {
-              return Scaffold(
-                body: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/app_icon.png',
-                        width: 120,
-                        height: 120,
-                      ),
-                      const SizedBox(height: 24),
-                      const LoginScreen(),
-                    ],
-                  ),
-                ),
-              );
+              return const LoginScreen();
             } else {
               return const MainNavigation();
             }

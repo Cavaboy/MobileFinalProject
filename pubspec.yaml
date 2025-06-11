@@ -50,6 +50,7 @@ dependencies:
   sqflite: ^2.2.0
   path: ^1.8.3
   shared_preferences: ^2.2.2
+  flutter_launcher_icons: ^0.14.4
   # If you want Google Maps instead of flutter_map, uncomment below
   # google_maps_flutter: ^2.6.0
 
