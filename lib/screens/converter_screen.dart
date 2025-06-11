@@ -110,8 +110,15 @@ class _CurrencyConverterWidgetState extends State<CurrencyConverterWidget> {
   double? _result;
   bool _loading = false;
   String? _error;
+  List<String> _currencies = ['USD', 'EUR', 'IDR', 'JPY', 'GBP', 'AUD', 'SGD'];
+  bool _currenciesLoading = false;
 
   static const String accessKey = 'b317b9330af979844a9c880e1e97f01c';
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   Future<void> _convert() async {
     setState(() {
@@ -178,25 +185,31 @@ class _CurrencyConverterWidgetState extends State<CurrencyConverterWidget> {
                 ),
               ),
               const SizedBox(width: 8),
-              DropdownButton<String>(
-                value: _from,
-                items: const [
-                  DropdownMenuItem(value: 'USD', child: Text('USD')),
-                  DropdownMenuItem(value: 'EUR', child: Text('EUR')),
-                  DropdownMenuItem(value: 'IDR', child: Text('IDR')),
-                ],
-                onChanged: (v) => setState(() => _from = v!),
-              ),
+              _currenciesLoading
+                  ? const CircularProgressIndicator()
+                  : DropdownButton<String>(
+                    value: _from,
+                    items:
+                        _currencies
+                            .map(
+                              (c) => DropdownMenuItem(value: c, child: Text(c)),
+                            )
+                            .toList(),
+                    onChanged: (v) => setState(() => _from = v!),
+                  ),
               const Icon(Icons.arrow_forward),
-              DropdownButton<String>(
-                value: _to,
-                items: const [
-                  DropdownMenuItem(value: 'USD', child: Text('USD')),
-                  DropdownMenuItem(value: 'EUR', child: Text('EUR')),
-                  DropdownMenuItem(value: 'IDR', child: Text('IDR')),
-                ],
-                onChanged: (v) => setState(() => _to = v!),
-              ),
+              _currenciesLoading
+                  ? const CircularProgressIndicator()
+                  : DropdownButton<String>(
+                    value: _to,
+                    items:
+                        _currencies
+                            .map(
+                              (c) => DropdownMenuItem(value: c, child: Text(c)),
+                            )
+                            .toList(),
+                    onChanged: (v) => setState(() => _to = v!),
+                  ),
             ],
           ),
           const SizedBox(height: 12),
