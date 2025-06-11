@@ -2,23 +2,35 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  // Fetch currency conversion rate from ExchangeRate.host
+  // Fetch currency conversion rate from ExchangeRate.host (API key required)
   Future<double?> fetchCurrencyRate(
     String from,
     String to, {
     double amount = 1.0,
+    String apiKey = '420df3eccaa8b9adeffbddfac650f251',
   }) async {
     try {
       final url = Uri.parse(
-        'https://api.exchangerate.host/convert?from=$from&to=$to&amount=$amount',
+        'https://api.exchangerate.host/convert?from=$from&to=$to&amount=$amount&access_key=$apiKey',
       );
       final response = await http.get(url);
+      print('Currency API URL: ' + url.toString());
+      print('Currency API status: ' + response.statusCode.toString());
+      print('Currency API body: ' + response.body);
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        return (data['result'] as num?)?.toDouble();
+        if (data['success'] == true) {
+          return (data['result'] as num?)?.toDouble();
+        } else {
+          print(
+            'Currency API error: ' +
+                (data['error']?['info']?.toString() ?? 'Unknown error'),
+          );
+        }
       }
       return null;
     } catch (e) {
+      print('Currency conversion error: ' + e.toString());
       return null;
     }
   }

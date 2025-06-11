@@ -12,81 +12,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // _localProfilePhotoBase64 is no longer needed as profile photo is removed
-  // String? _localProfilePhotoBase64;
-  // Controllers for the new text fields are no longer needed as they are hardcoded
-  // final TextEditingController _kesanController = TextEditingController();
-  // final TextEditingController _pesanController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
-    // _loadLocalProfilePhoto(); // No longer needed
   }
 
   @override
   void dispose() {
-    // _kesanController.dispose(); // No longer needed
-    // _pesanController.dispose(); // No longer needed
     super.dispose();
   }
-
-  // _loadLocalProfilePhoto method is no longer needed as profile photo is removed
-  /*
-  Future<void> _loadLocalProfilePhoto() async {
-    final prefs = await SharedPreferences.getInstance();
-    if (!mounted) return; // Ensure widget is still mounted before setState
-    setState(() {
-      _localProfilePhotoBase64 = prefs.getString('profile_photo_base64');
-    });
-  }
-  */
-
-  // _buildProfilePhoto helper method is no longer needed as profile photo is removed
-  /*
-  Widget _buildProfilePhoto(BuildContext context, dynamic user) {
-    return Container(
-      width: 60, // Smaller avatar for top-left
-      height: 60,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 5,
-            spreadRadius: 1,
-          ),
-        ],
-      ),
-      child: ClipOval(
-        child: _localProfilePhotoBase64 != null
-            ? Image.memory(
-                base64Decode(_localProfilePhotoBase64!),
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  // Fallback on error (e.g., corrupted base64)
-                  return Icon(Icons.person_rounded, size: 30, color: Theme.of(context).colorScheme.primary);
-                },
-              )
-            : (user?.photoUrl != null && user.photoUrl!.isNotEmpty
-                ? Image.network(
-                    user.photoUrl!,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      // Fallback on network image error
-                      return Icon(Icons.person_rounded, size: 30, color: Theme.of(context).colorScheme.primary);
-                    },
-                  )
-                : Icon(
-                    Icons.person_rounded, // Default person icon
-                    size: 30,
-                    color: Theme.of(context).colorScheme.primary,
-                  )),
-      ),
-    );
-  }
-  */
 
   Widget _buildUnauthenticatedState(BuildContext context) {
     return Center(
@@ -153,30 +87,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // Get the current user from AuthService
     final user = Provider.of<AuthService>(context).user;
-
-    // InputDecoration styles are no longer directly used for Kesan/Pesan, but kept for reference if needed elsewhere.
-    /*
-    final InputDecoration inputDecoration = InputDecoration(
-      filled: true,
-      fillColor: const Color(0xFFF0F0F0), // Light grey background
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12.0),
-        borderSide: BorderSide.none, // No visible border initially
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12.0),
-        borderSide: BorderSide.none,
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12.0),
-        borderSide: BorderSide(
-          color: Theme.of(context).colorScheme.primary, // Brand blue when focused
-          width: 2.0,
-        ),
-      ),
-      contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
-    );
-    */
 
     return ChangeNotifierProvider(
       create: (_) {
@@ -316,9 +226,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                       const SizedBox(height: 40), // Space after pedometer card
-                      // --- Hardcoded Kesan and Pesan Sections ---
                       Text(
-                        'Community Insights:', // Updated heading
+                        'Impressions and Message:', // Updated heading
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: Theme.of(context).colorScheme.onBackground,
@@ -342,7 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Kesan (Impression/Feedback):',
+                                'Impression',
                                 style: Theme.of(
                                   context,
                                 ).textTheme.titleMedium?.copyWith(
@@ -355,7 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                '“This app has been a game-changer for tracking my steps while working remotely. The converter is incredibly useful!”',
+                                'kesan would be here',
                                 style: Theme.of(
                                   context,
                                 ).textTheme.bodyLarge?.copyWith(
@@ -380,7 +289,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Pesan (Message/Suggestion):',
+                                'Message',
                                 style: Theme.of(
                                   context,
                                 ).textTheme.titleMedium?.copyWith(
@@ -390,7 +299,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                '“It would be great to see more options in the unit converter, like volume and data units. Keep up the good work!”',
+                                'Pesan would be here',
                                 style: Theme.of(
                                   context,
                                 ).textTheme.bodyLarge?.copyWith(

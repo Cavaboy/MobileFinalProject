@@ -70,9 +70,8 @@ class _MapScreenState extends State<MapScreen> {
       // Fetch nearby places from Geoapify
       final lat = pos.latitude;
       final lon = pos.longitude;
-      // TODO: Securely manage your API key (e.g., using environment variables or a build config)
       final apiKey =
-          '812b6ba40e0f47a2b0c1f4c4af964f07'; // Your Geoapify API Key
+          '812b6ba40e0f47a2b0c1f4c4af964f07'; 
       final url = Uri.parse(
         'https://api.geoapify.com/v2/places?categories=catering.cafe,office.coworking&filter=circle:$lon,$lat,20000&limit=10&apiKey=$apiKey',
       );

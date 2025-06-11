@@ -227,10 +227,12 @@ class _CurrencyConverterWidgetState extends State<CurrencyConverterWidget> {
         });
         return;
       }
+      // Use your new API key for currency conversion
       final rate = await _apiService.fetchCurrencyRate(
         _from,
         _to,
         amount: amount,
+        // No API key needed for ExchangeRate.host
       );
       if (rate != null) {
         setState(() {
