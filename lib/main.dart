@@ -27,7 +27,6 @@ class NomadDailyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthService()),
-        // Add other providers here
       ],
       child: MaterialApp(
         title: 'NomadDaily',
