@@ -30,6 +30,7 @@ class NomadDailyApp extends StatelessWidget {
       providers: [ChangeNotifierProvider(create: (_) => AuthService())],
       child: MaterialApp(
         title: 'NomadDaily',
+        debugShowCheckedModeBanner: false, // Remove the debug ribbon
         theme: ThemeData(
           // Define a light color scheme using your brand blue
           colorScheme: ColorScheme.light(
@@ -93,7 +94,7 @@ class AppLauncher extends StatelessWidget {
         if (auth.user == null) {
           return const LoginScreen();
         } else {
-          return const MainNavigation();
+          return MainNavigation();
         }
       },
     );
