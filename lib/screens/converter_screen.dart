@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
 import 'home_screen.dart';
 import 'map_screen.dart';
-import 'profile_screen.dart';
+import 'profile_screen.dart' as profile;
 
 class ConverterScreen extends StatefulWidget {
   const ConverterScreen({super.key});
@@ -35,17 +35,7 @@ class _ConverterScreenState extends State<ConverterScreen>
   Widget build(BuildContext context) {
     final user = Provider.of<AuthService>(context).user;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Converter'),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: const [
-            Tab(text: 'Currency'),
-            Tab(text: 'Timezone'),
-            Tab(text: 'Unit'),
-          ],
-        ),
-      ),
+      appBar: AppBar(title: const Text('Converter')),
       body:
           user == null
               ? const Center(
@@ -54,45 +44,28 @@ class _ConverterScreenState extends State<ConverterScreen>
                   style: TextStyle(color: Colors.red),
                 ),
               )
-              : TabBarView(
-                controller: _tabController,
+              : Column(
                 children: [
-                  // Currency Converter
-                  CurrencyConverterWidget(),
-                  // Timezone Converter
-                  TimezoneConverterWidget(),
-                  // Unit Converter
-                  UnitConverterWidget(),
+                  TabBar(
+                    controller: _tabController,
+                    tabs: const [
+                      Tab(text: 'Currency'),
+                      Tab(text: 'Timezone'),
+                      Tab(text: 'Unit'),
+                    ],
+                  ),
+                  Expanded(
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: [
+                        CurrencyConverterWidget(),
+                        TimezoneConverterWidget(),
+                        UnitConverterWidget(),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 2, // Converter is index 2
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.of(
-              context,
-            ).pushReplacement(MaterialPageRoute(builder: (_) => HomeScreen()));
-          } else if (index == 1) {
-            Navigator.of(
-              context,
-            ).pushReplacement(MaterialPageRoute(builder: (_) => MapScreen()));
-          } else if (index == 3) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => ProfileScreen()),
-            );
-          }
-        },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Nearby'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.swap_horiz),
-            label: 'Converter',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-        type: BottomNavigationBarType.fixed,
-      ),
     );
   }
 }

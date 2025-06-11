@@ -10,7 +10,6 @@ import '../services/auth_service.dart';
 import '../services/notification_service.dart';
 import 'home_screen.dart';
 import 'converter_screen.dart';
-import 'profile_screen.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -277,34 +276,6 @@ class _MapScreenState extends State<MapScreen> {
                   ),
                 ),
               ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1, // Map is index 1
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.of(
-              context,
-            ).pushReplacement(MaterialPageRoute(builder: (_) => HomeScreen()));
-          } else if (index == 2) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => ConverterScreen()),
-            );
-          } else if (index == 3) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => ProfileScreen()),
-            );
-          }
-        },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Nearby'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.swap_horiz),
-            label: 'Converter',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-        type: BottomNavigationBarType.fixed,
-      ),
     );
   }
 }

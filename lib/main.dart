@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'screens/home_screen.dart';
 import 'screens/map_screen.dart';
 import 'screens/converter_screen.dart';
-import 'screens/profile_screen.dart';
+import 'screens/profile_screen.dart' as profile;
 import 'screens/login_screen.dart';
 import 'services/auth_service.dart';
 import 'services/notification_service.dart';
@@ -43,15 +43,19 @@ class NomadDailyApp extends StatelessWidget {
             onBackground: const Color(0xFF212121), // Primary text color
             onSurface: const Color(0xFF212121), // Text on surfaces
           ),
-          scaffoldBackgroundColor: Colors.white, // Clean white background for all scaffolds
-          fontFamily: 'Inter', // Suggesting 'Inter' font (requires Google Fonts package)
-                               // If not using Google Fonts, remove this line to use system default.
+          scaffoldBackgroundColor:
+              Colors.white, // Clean white background for all scaffolds
+          fontFamily:
+              'Inter', // Suggesting 'Inter' font (requires Google Fonts package)
+          // If not using Google Fonts, remove this line to use system default.
 
           // AppBar Theme for a minimalist look
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white, // White app bar background
             elevation: 0, // No shadow for a flat design
-            foregroundColor: Color(0xFF212121), // Dark grey for app bar text/icons
+            foregroundColor: Color(
+              0xFF212121,
+            ), // Dark grey for app bar text/icons
             centerTitle: true, // Center app bar title for a clean look
           ),
 
@@ -59,10 +63,14 @@ class NomadDailyApp extends StatelessWidget {
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             backgroundColor: Colors.white, // White background for the bar
             selectedItemColor: brandBlue, // Brand blue for selected items
-            unselectedItemColor: Color(0xFF757575), // Medium grey for unselected items
+            unselectedItemColor: Color(
+              0xFF757575,
+            ), // Medium grey for unselected items
             elevation: 0, // No shadow for a flat look
             type: BottomNavigationBarType.fixed, // Ensure all items are visible
-            selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold), // Bold label for selected item
+            selectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+            ), // Bold label for selected item
           ),
           useMaterial3: true, // Opt-in to Material 3
         ),
@@ -105,7 +113,7 @@ class _MainNavigationState extends State<MainNavigation> {
     HomeScreen(),
     MapScreen(),
     ConverterScreen(),
-    ProfileScreen(),
+    profile.ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -123,13 +131,22 @@ class _MainNavigationState extends State<MainNavigation> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'Home'), // Using rounded icons for modern feel
-          BottomNavigationBarItem(icon: Icon(Icons.map_rounded), label: 'Nearby'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_rounded),
+            label: 'Home',
+          ), // Using rounded icons for modern feel
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map_rounded),
+            label: 'Nearby',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.swap_horiz_rounded),
             label: 'Converter',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person_rounded), label: 'Profile'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_rounded),
+            label: 'Profile',
+          ),
         ],
       ),
     );
