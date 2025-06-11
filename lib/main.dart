@@ -24,9 +24,7 @@ class NomadDailyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AuthService()),
-      ],
+      providers: [ChangeNotifierProvider(create: (_) => AuthService())],
       child: MaterialApp(
         title: 'NomadDaily',
         theme: ThemeData(
@@ -35,12 +33,31 @@ class NomadDailyApp extends StatelessWidget {
         home: Consumer<AuthService>(
           builder: (context, auth, _) {
             if (auth.user == null) {
-              return const LoginScreen();
+              return Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/app_icon.png',
+                        width: 120,
+                        height: 120,
+                      ),
+                      const SizedBox(height: 24),
+                      const LoginScreen(),
+                    ],
+                  ),
+                ),
+              );
             } else {
               return const MainNavigation();
             }
           },
         ),
+        // Set the app icon for splash and launcher (for in-app use, e.g. splash screen)
+        builder: (context, child) {
+          return child!;
+        },
       ),
     );
   }
