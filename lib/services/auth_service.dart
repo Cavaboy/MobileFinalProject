@@ -83,16 +83,12 @@ class AuthService extends ChangeNotifier {
     return null;
   }
 
-  // Mock sign out
   Future<void> signOut() async {
     _user = null;
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('logged_in_email');
     notifyListeners();
   }
-
-  // Placeholder for Firestore REST API usage for DB features
-  // TODO: Implement Firestore REST API calls here if needed
 
   String encryptPassword(String password) {
     return _encrypt(password, 3);

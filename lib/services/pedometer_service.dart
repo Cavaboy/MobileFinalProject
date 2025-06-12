@@ -43,14 +43,9 @@ class PedometerService extends ChangeNotifier {
       await prefs.setInt('pedometer_offset', _offset);
     }
     _steps = event.steps;
-    // Prevent negative steps and filter out double-counting (if step diff > 1)
+    // Always use the raw difference for sensitivity
     int todaySteps = _steps - _offset;
     if (todaySteps < 0) todaySteps = 0;
-    if (_steps - _offset > 0 && event.steps - _steps > 1) {
-      // If the step difference is suspiciously high, only increment by 1
-      todaySteps = (_steps - _offset) - ((event.steps - _steps) - 1);
-      if (todaySteps < 0) todaySteps = 0;
-    }
     notifyListeners();
   }
 }

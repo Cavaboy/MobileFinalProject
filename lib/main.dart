@@ -48,9 +48,6 @@ class NomadDailyApp extends StatelessWidget {
               Colors.white, // Clean white background for all scaffolds
           fontFamily:
               'Inter', // Suggesting 'Inter' font (requires Google Fonts package)
-          // If not using Google Fonts, remove this line to use system default.
-
-          // AppBar Theme for a minimalist look
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white, // White app bar background
             elevation: 0, // No shadow for a flat design
