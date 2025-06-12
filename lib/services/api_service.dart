@@ -11,7 +11,7 @@ class ApiService {
   }) async {
     try {
       final url = Uri.parse(
-        'https://api.exchangerate.host/convert?from=$from&to=$to&amount=$amount&access_key=$apiKey',
+        'https://api.exchangerate.host/convert?from=$from&to=$to&amount=$amount&access_key=bc591e60b04c77950d7ff4fcdc837ea0',
       );
       final response = await http.get(url);
       print('Currency API URL: ' + url.toString());
